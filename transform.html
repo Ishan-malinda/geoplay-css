@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformations - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for transformations */
+        .transform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .transform-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+        }
+
+        .transform-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .transform-display {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: var(--space-md) 0;
+            height: 150px;
+        }
+
+        .before, .after {
+            width: 100px;
+            height: 100px;
+            background: var(--color-primary);
+            transition: transform var(--timing-slow) ease-in-out;
+        }
+
+        .transform-card:hover .after {
+            transform: rotate(45deg);
+        }
+
+        .rotate-card:hover .after {
+            transform: rotate(90deg);
+        }
+
+        .scale-card:hover .after {
+            transform: scale(1.5);
+        }
+
+        .skew-card:hover .after {
+            transform: skew(20deg);
+        }
+
+        .flip-card:hover .after {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Shape Transformations</h1>
+        <p>Hover over each card to see how shapes can change! Watch the "After" shape transform.</p>
+
+        <div class="transform-grid">
+            <div class="transform-card rotate-card">
+                <h3>Rotate</h3>
+                <div class="transform-display">
+                    <div class="before"></div>
+                    <div class="after"></div>
+                </div>
+                <p>Rotation turns a shape around a point. Hover to rotate 90 degrees!</p>
+            </div>
+
+            <div class="transform-card scale-card">
+                <h3>Scale</h3>
+                <div class="transform-display">
+                    <div class="before"></div>
+                    <div class="after"></div>
+                </div>
+                <p>Scaling makes a shape bigger or smaller. Hover to make it 1.5 times larger!</p>
+            </div>
+
+            <div class="transform-card skew-card">
+                <h3>Skew</h3>
+                <div class="transform-display">
+                    <div class="before"></div>
+                    <div class="after"></div>
+                </div>
+                <p>Skewing tilts a shape. Hover to skew it 20 degrees!</p>
+            </div>
+
+            <div class="transform-card flip-card">
+                <h3>Flip</h3>
+                <div class="transform-display">
+                    <div class="before"></div>
+                    <div class="after"></div>
+                </div>
+                <p>Flipping mirrors a shape. Hover to flip it horizontally!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

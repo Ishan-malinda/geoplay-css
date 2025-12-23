@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angles - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for angles */
+        .angle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .angle-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+        }
+
+        .angle-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .angle-display {
+            position: relative;
+            height: 200px;
+            margin: var(--space-md) 0;
+        }
+
+        .angle-shape {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(from 0deg, var(--color-primary) 0deg, var(--color-primary) 90deg, transparent 90deg);
+            border-radius: var(--radius-full);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .right-angle {
+            background: conic-gradient(from 0deg, var(--color-secondary) 0deg, var(--color-secondary) 90deg, transparent 90deg);
+        }
+
+        .obtuse-angle {
+            background: conic-gradient(from 0deg, var(--color-accent) 0deg, var(--color-accent) 120deg, transparent 120deg);
+        }
+
+        .acute-angle {
+            background: conic-gradient(from 0deg, var(--color-neutral) 0deg, var(--color-neutral) 45deg, transparent 45deg);
+        }
+
+        .angle-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            color: var(--color-text-light);
+        }
+
+        .angle-measure {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-bg);
+            color: var(--color-text);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .angle-interactive {
+            margin: var(--space-lg) 0;
+            text-align: center;
+        }
+
+        .angle-slider {
+            width: 200px;
+            height: 10px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .angle-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-full);
+            background: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .dynamic-angle {
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(from 0deg, var(--color-primary) 0deg, var(--color-primary) 90deg, transparent 90deg);
+            border-radius: var(--radius-full);
+            margin: var(--space-md) auto;
+            transition: all var(--timing-normal) ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Angles</h1>
+        <p>Learn about different types of angles and how to measure them!</p>
+
+        <div class="angle-grid">
+            <div class="angle-card">
+                <div class="angle-display">
+                    <div class="angle-shape acute-angle">
+                        <div class="angle-label">∠</div>
+                        <div class="angle-measure">45°</div>
+                    </div>
+                </div>
+                <h3>Acute Angle</h3>
+                <p>Less than 90 degrees. Sharp and pointy!</p>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-display">
+                    <div class="angle-shape right-angle">
+                        <div class="angle-label">∠</div>
+                        <div class="angle-measure">90°</div>
+                    </div>
+                </div>
+                <h3>Right Angle</h3>
+                <p>Exactly 90 degrees. Like corners of a square!</p>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-display">
+                    <div class="angle-shape obtuse-angle">
+                        <div class="angle-label">∠</div>
+                        <div class="angle-measure">120°</div>
+                    </div>
+                </div>
+                <h3>Obtuse Angle</h3>
+                <p>More than 90 degrees but less than 180. Wide and open!</p>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-display">
+                    <div class="angle-shape">
+                        <div class="angle-label">∠</div>
+                        <div class="angle-measure">180°</div>
+                    </div>
+                </div>
+                <h3>Straight Angle</h3>
+                <p>Exactly 180 degrees. A straight line!</p>
+            </div>
+        </div>
+
+        <div class="angle-interactive">
+            <h2>Angle Explorer</h2>
+            <p>Use the slider to change the angle!</p>
+            <input type="range" min="0" max="180" value="90" class="angle-slider" id="angleSlider">
+            <div class="dynamic-angle" id="dynamicAngle"></div>
+        </div>
+    </div>
+</body>
+</html>

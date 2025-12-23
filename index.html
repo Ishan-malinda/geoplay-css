@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPlay - Learn Geometry Through Living Shapes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for landing */
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
+        }
+
+        .title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-primary);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-2xl);
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: var(--space-xl);
+        }
+
+        .btn {
+            padding: var(--space-md) var(--space-xl);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            transition: all var(--timing-slow) ease-in-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        /* Animated background shapes - Subtle and educational */
+        .bg-shape {
+            position: absolute;
+            opacity: 0.4; /* Increased opacity for better visibility */
+            animation-fill-mode: both;
+        }
+
+        .bg-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(45deg, var(--color-secondary), var(--color-accent)); /* More vibrant colors */
+            top: 10%;
+            left: 10%;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .bg-triangle {
+            width: 150px;
+            height: 150px;
+            background: var(--color-primary); /* Solid color for better visibility */
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            top: 60%;
+            right: 15%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .bg-square {
+            width: 100px;
+            height: 100px;
+            background: var(--color-accent); /* Solid color */
+            top: 30%;
+            right: 30%;
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* Space for fixed nav */
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1 class="title">GeoPlay</h1>
+        <p class="subtitle">Learn Geometry Through Living Shapes</p>
+
+        <div class="buttons">
+            <a href="shapes.html" class="btn">Basic Shapes</a>
+            <a href="polygons.html" class="btn">Polygons</a>
+            <a href="transform.html" class="btn">Transformations</a>
+            <a href="symmetry.html" class="btn">Symmetry</a>
+            <a href="angles.html" class="btn">Angles</a>
+            <a href="area.html" class="btn">Area & Perimeter</a>
+            <a href="coordinates.html" class="btn">Coordinates</a>
+            <a href="3dshapes.html" class="btn">3D Shapes</a>
+            <a href="motion.html" class="btn">Motion & Patterns</a>
+            <a href="challenges.html" class="btn">Challenges</a>
+        </div>
+
+        <!-- Animated background shapes -->
+        <div class="bg-shape bg-circle"></div>
+        <div class="bg-shape bg-triangle"></div>
+        <div class="bg-shape bg-square"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

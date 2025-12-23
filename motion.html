@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion & Patterns - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for motion and patterns */
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .pattern-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+            min-height: 300px;
+        }
+
+        .pattern-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .pattern-display {
+            height: 200px;
+            margin: var(--space-md) 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .symmetry-pattern {
+            background: repeating-linear-gradient(
+                45deg,
+                var(--color-primary) 0px,
+                var(--color-primary) 10px,
+                var(--color-secondary) 10px,
+                var(--color-secondary) 20px
+            );
+            animation: slide 10s linear infinite;
+        }
+
+        .repetition-pattern {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 2px;
+        }
+
+        .repetition-pattern div {
+            background: var(--color-accent);
+            animation: pulse 2s infinite;
+        }
+
+        .repetition-pattern div:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        .wave-pattern {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-neutral));
+            position: relative;
+        }
+
+        .wave-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent 0px,
+                transparent 20px,
+                rgba(255, 255, 255, 0.3) 20px,
+                rgba(255, 255, 255, 0.3) 40px
+            );
+            animation: wave 6s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Motion & Patterns</h1>
+        <p>Explore how shapes move and create beautiful patterns!</p>
+
+        <div class="pattern-grid">
+            <div class="pattern-card">
+                <h3>Symmetry</h3>
+                <div class="pattern-display symmetry-pattern"></div>
+                <p>Symmetry means both sides look the same. This pattern slides back and forth!</p>
+            </div>
+
+            <div class="pattern-card">
+                <h3>Repetition</h3>
+                <div class="pattern-display repetition-pattern">
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div>
+                </div>
+                <p>Repetition means the same thing happens over and over. Watch them pulse!</p>
+            </div>
+
+            <div class="pattern-card">
+                <h3>Wave Motion</h3>
+                <div class="pattern-display wave-pattern"></div>
+                <p>Waves move like ocean waves. This pattern flows from side to side!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

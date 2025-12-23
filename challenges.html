@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for challenges */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .challenge-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+        }
+
+        .challenge-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .question {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .shape-question {
+            width: 100px;
+            height: 100px;
+            margin: var(--space-md) auto;
+            background: var(--color-primary);
+            transition: background var(--timing-normal) ease-in-out;
+        }
+
+        .circle-q {
+            border-radius: var(--radius-full);
+        }
+
+        .triangle-q {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: var(--color-accent);
+        }
+
+        .answer {
+            opacity: 0;
+            transition: opacity var(--timing-normal) ease-in-out;
+            font-weight: 600;
+            color: var(--color-success);
+        }
+
+        .challenge-card:hover .answer {
+            opacity: 1;
+        }
+
+        /* For :target based challenges */
+        .target-challenge {
+            margin: var(--space-md) 0;
+        }
+
+        .reveal-link {
+            display: inline-block;
+            margin: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-secondary);
+            color: var(--color-text-light);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--timing-normal) ease-in-out;
+        }
+
+        .reveal-link:hover,
+        .reveal-link:focus {
+            background: #c0392b;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
+        }
+
+        .hidden-answer {
+            display: none;
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: var(--color-accent);
+            border-radius: var(--radius-md);
+        }
+
+        .hidden-answer:target {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Geometry Challenges</h1>
+        <p>Hover over the questions to reveal answers, or click the links below!</p>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <div class="question">What shape is this?</div>
+                <div class="shape-question circle-q"></div>
+                <div class="answer">It's a circle! Round and smooth.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">How many sides does this shape have?</div>
+                <div class="shape-question triangle-q"></div>
+                <div class="answer">It has 3 sides! It's a triangle.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">What happens when you rotate a square?</div>
+                <div class="shape-question"></div>
+                <div class="answer">It looks the same! Squares are symmetrical.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">Can a triangle have curved sides?</div>
+                <div class="shape-question triangle-q"></div>
+                <div class="answer">Usually not, but some special triangles might!</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">What type of angle is 90 degrees?</div>
+                <div class="shape-question" style="background: conic-gradient(from 0deg, var(--color-primary) 0deg, var(--color-primary) 90deg, transparent 90deg); border-radius: 50%;"></div>
+                <div class="answer">It's a right angle! Like corners of a square.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">Which shape has infinite sides?</div>
+                <div class="shape-question circle-q" style="border: 3px dashed var(--color-accent);"></div>
+                <div class="answer">A circle! It has no straight sides.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">What transformation flips a shape?</div>
+                <div class="shape-question triangle-q"></div>
+                <div class="answer">Reflection! It mirrors the shape.</div>
+            </div>
+
+            <div class="challenge-card">
+                <div class="question">How many faces does a cube have?</div>
+                <div class="shape-question" style="background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));"></div>
+                <div class="answer">6 faces! All squares.</div>
+            </div>
+        </div>
+
+        <h2>Click Challenges</h2>
+        <div class="target-challenge">
+            <p>What is the name of a shape with 6 sides?</p>
+            <a href="#hexagon" class="reveal-link">Reveal Answer</a>
+            <div id="hexagon" class="hidden-answer">It's called a hexagon!</div>
+        </div>
+
+        <div class="target-challenge">
+            <p>What transformation makes a shape bigger?</p>
+            <a href="#scale" class="reveal-link">Reveal Answer</a>
+            <div id="scale" class="hidden-answer">Scaling makes it bigger or smaller!</div>
+        </div>
+
+        <div class="target-challenge">
+            <p>Which quadrant is point (-3, 4) in?</p>
+            <a href="#quadrant" class="reveal-link">Reveal Answer</a>
+            <div id="quadrant" class="hidden-answer">Second quadrant! Negative x, positive y.</div>
+        </div>
+
+        <div class="target-challenge">
+            <p>What is the formula for circle area?</p>
+            <a href="#circlearea" class="reveal-link">Reveal Answer</a>
+            <div id="circlearea" class="hidden-answer">Area = π × radius²</div>
+        </div>
+
+        <div class="target-challenge">
+            <p>How many degrees in a straight angle?</p>
+            <a href="#straight" class="reveal-link">Reveal Answer</a>
+            <div id="straight" class="hidden-answer">180 degrees! A straight line.</div>
+        </div>
+
+        <div class="target-challenge">
+            <p>What shape has 5 faces and a square base?</p>
+            <a href="#pyramid" class="reveal-link">Reveal Answer</a>
+            <div id="pyramid" class="hidden-answer">A square pyramid!</div>
+        </div>
+    </div>
+</body>
+</html>

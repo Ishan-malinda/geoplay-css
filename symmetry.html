@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetry - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for symmetry */
+        .symmetry-section {
+            margin-top: var(--space-2xl);
+        }
+
+        .symmetry-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            margin: var(--space-lg) 0;
+            align-items: center;
+        }
+
+        .symmetry-left, .symmetry-right {
+            height: 200px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: bold;
+            color: var(--color-text-light);
+        }
+
+        .symmetry-right {
+            transform: scaleX(-1);
+        }
+
+        .mirror-line {
+            width: 2px;
+            height: 200px;
+            background: var(--color-accent);
+            position: relative;
+        }
+
+        .mirror-line::after {
+            content: 'Mirror Line';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-accent);
+            color: var(--color-text-light);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .tessellation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin: var(--space-lg) 0;
+            background: var(--color-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .tessellation-tile {
+            aspect-ratio: 1;
+            background: var(--color-primary);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: tessellate 4s ease-in-out infinite;
+        }
+
+        .tessellation-tile:nth-child(odd) {
+            background: var(--color-secondary);
+            animation-delay: 2s;
+        }
+
+        @keyframes tessellate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(90deg); }
+        }
+
+        .symmetry-interactive {
+            margin: var(--space-lg) 0;
+            text-align: center;
+        }
+
+        .symmetry-shape {
+            width: 100px;
+            height: 100px;
+            background: var(--color-accent);
+            margin: 0 auto;
+            transition: all var(--timing-slow) ease-in-out;
+            cursor: pointer;
+        }
+
+        .symmetry-shape:hover {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Symmetry & Patterns</h1>
+        <p>Discover how shapes can be mirrored and repeated!</p>
+
+        <div class="symmetry-section">
+            <h2>Mirror Symmetry</h2>
+            <p>One side is the mirror image of the other.</p>
+
+            <div class="symmetry-demo">
+                <div class="symmetry-left">ABC</div>
+                <div class="mirror-line"></div>
+                <div class="symmetry-right">ABC</div>
+            </div>
+        </div>
+
+        <div class="symmetry-section">
+            <h2>Tessellations</h2>
+            <p>Shapes that fit together without gaps or overlaps.</p>
+
+            <div class="tessellation-grid">
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+                <div class="tessellation-tile"></div>
+            </div>
+        </div>
+
+        <div class="symmetry-section">
+            <h2>Try It Yourself</h2>
+            <p>Hover over the shape to see it flip!</p>
+
+            <div class="symmetry-interactive">
+                <div class="symmetry-shape"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

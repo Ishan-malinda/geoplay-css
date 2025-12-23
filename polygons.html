@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polygons - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for polygons */
+        .polygon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .polygon-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+        }
+
+        .polygon-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .polygon-display {
+            margin: var(--space-md) 0;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pentagon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+
+        .hexagon {
+            width: 120px;
+            height: 120px;
+            background: conic-gradient(from 30deg, var(--color-secondary), var(--color-primary), var(--color-accent));
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        }
+
+        .octagon {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, var(--color-accent), var(--color-primary));
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+
+        .star {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .polygon:hover {
+            animation: spin 8s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Advanced Polygons</h1>
+        <p>Explore shapes with more sides! Hover to see them spin.</p>
+
+        <div class="polygon-grid">
+            <div class="polygon-card">
+                <div class="polygon-display">
+                    <div class="polygon pentagon"></div>
+                </div>
+                <h3>Pentagon</h3>
+                <p>A five-sided polygon. Like a star without the points!</p>
+                <small>5 sides, 5 angles</small>
+            </div>
+
+            <div class="polygon-card">
+                <div class="polygon-display">
+                    <div class="polygon hexagon"></div>
+                </div>
+                <h3>Hexagon</h3>
+                <p>Six equal sides. Honeycomb shapes are hexagons!</p>
+                <small>6 sides, 6 angles</small>
+            </div>
+
+            <div class="polygon-card">
+                <div class="polygon-display">
+                    <div class="polygon octagon"></div>
+                </div>
+                <h3>Octagon</h3>
+                <p>Eight sides. Stop signs are octagons!</p>
+                <small>8 sides, 8 angles</small>
+            </div>
+
+            <div class="polygon-card">
+                <div class="polygon-display">
+                    <div class="polygon star"></div>
+                </div>
+                <h3>Star</h3>
+                <p>A special polygon with points. Stars in the sky!</p>
+                <small>10 sides (5 points)</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

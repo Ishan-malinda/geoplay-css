@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area & Perimeter - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for area and perimeter */
+        .measurement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .measurement-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+        }
+
+        .measurement-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .shape-diagram {
+            position: relative;
+            height: 200px;
+            margin: var(--space-md) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rectangle-measure {
+            width: 150px;
+            height: 100px;
+            background: var(--color-primary);
+            position: relative;
+            border: 2px solid var(--color-text);
+        }
+
+        .rectangle-measure::before {
+            content: 'Length: 15 units';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: var(--font-size-sm);
+            background: var(--color-bg);
+            padding: 2px 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        .rectangle-measure::after {
+            content: 'Width: 10 units';
+            position: absolute;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: var(--font-size-sm);
+            background: var(--color-bg);
+            padding: 2px 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        .circle-measure {
+            width: 120px;
+            height: 120px;
+            background: var(--color-secondary);
+            border-radius: var(--radius-full);
+            position: relative;
+            border: 2px solid var(--color-text);
+        }
+
+        .circle-measure::before {
+            content: 'Radius: 6 units';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: var(--font-size-sm);
+            background: var(--color-bg);
+            padding: 2px 4px;
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+        }
+
+        .triangle-measure {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 130px solid var(--color-accent);
+            position: relative;
+            margin: 35px auto;
+        }
+
+        .triangle-measure::before {
+            content: 'Base: 15 units';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: var(--font-size-sm);
+            background: var(--color-bg);
+            padding: 2px 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        .triangle-measure::after {
+            content: 'Height: 13 units';
+            position: absolute;
+            left: -90px;
+            top: 30%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: var(--font-size-sm);
+            background: var(--color-bg);
+            padding: 2px 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        .formula-box {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .perimeter-highlight {
+            border: 3px solid var(--color-success);
+            animation: perimeter-pulse 2s infinite;
+        }
+
+        @keyframes perimeter-pulse {
+            0%, 100% { border-color: var(--color-success); }
+            50% { border-color: var(--color-primary); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Area & Perimeter</h1>
+        <p>Discover how to measure the size and distance around shapes!</p>
+
+        <div class="measurement-grid">
+            <div class="measurement-card">
+                <h3>Rectangle Area</h3>
+                <div class="shape-diagram">
+                    <div class="rectangle-measure"></div>
+                </div>
+                <div class="formula-box">
+                    Area = Length × Width<br>
+                    Area = 15 × 10 = 150 square units
+                </div>
+                <p>The space inside the rectangle.</p>
+            </div>
+
+            <div class="measurement-card">
+                <h3>Rectangle Perimeter</h3>
+                <div class="shape-diagram">
+                    <div class="rectangle-measure perimeter-highlight"></div>
+                </div>
+                <div class="formula-box">
+                    Perimeter = 2 × (Length + Width)<br>
+                    Perimeter = 2 × (15 + 10) = 50 units
+                </div>
+                <p>The distance around the rectangle.</p>
+            </div>
+
+            <div class="measurement-card">
+                <h3>Circle Area</h3>
+                <div class="shape-diagram">
+                    <div class="circle-measure"></div>
+                </div>
+                <div class="formula-box">
+                    Area = π × radius²<br>
+                    Area ≈ 3.14 × 6² ≈ 113 square units
+                </div>
+                <p>The space inside the circle.</p>
+            </div>
+
+            <div class="measurement-card">
+                <h3>Triangle Area</h3>
+                <div class="shape-diagram">
+                    <div class="triangle-measure"></div>
+                </div>
+                <div class="formula-box">
+                    Area = (Base × Height) ÷ 2<br>
+                    Area = (15 × 13) ÷ 2 = 97.5 square units
+                </div>
+                <p>The space inside the triangle.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

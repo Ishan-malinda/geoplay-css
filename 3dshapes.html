@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Shapes - GeoPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for 3D shapes */
+        .shape-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .shape-3d-card {
+            background-color: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--timing-normal) ease-in-out;
+            text-align: center;
+        }
+
+        .shape-3d-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .shape-3d-display {
+            perspective: 1000px;
+            height: 200px;
+            margin: var(--space-md) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cube {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cube-rotate 8s infinite linear;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--color-text);
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .cube-face.front { transform: translateZ(50px); }
+        .cube-face.back { transform: translateZ(-50px) rotateY(180deg); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(50px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(50px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+        .pyramid {
+            width: 0;
+            height: 0;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: pyramid-rotate 10s infinite linear;
+            margin: 50px auto;
+        }
+
+        .pyramid-face {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 87px solid var(--color-accent);
+        }
+
+        .pyramid-face.front { transform: translateZ(50px); }
+        .pyramid-face.back { transform: translateZ(-50px) rotateY(180deg); }
+        .pyramid-face.right { transform: rotateY(90deg) translateZ(50px); }
+        .pyramid-face.left { transform: rotateY(-90deg) translateZ(50px); }
+
+        .pyramid-base {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--color-neutral);
+            transform: rotateX(90deg) translateZ(-43.5px);
+        }
+
+        .sphere {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, var(--color-secondary), var(--color-primary));
+            border-radius: var(--radius-full);
+            position: relative;
+            animation: sphere-bounce 4s infinite ease-in-out;
+            box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sphere::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-full);
+        }
+
+        .cylinder {
+            width: 100px;
+            height: 120px;
+            position: relative;
+            animation: cylinder-roll 6s infinite linear;
+            border: 2px solid var(--color-text); /* Add border for visibility */
+        }
+
+        .cylinder-body {
+            width: 100px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary)); /* Changed direction and colors */
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            border: 2px solid var(--color-text);
+            border-bottom: none;
+        }
+
+        .cylinder-top, .cylinder-bottom {
+            width: 100px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: var(--radius-full);
+            position: absolute;
+            border: 2px solid var(--color-text);
+        }
+
+        .cylinder-top { top: 0; }
+        .cylinder-bottom { bottom: 0; }
+
+        @keyframes cube-rotate {
+            from { transform: rotateX(0) rotateY(0); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        @keyframes pyramid-rotate {
+            from { transform: rotateY(0); }
+            to { transform: rotateY(360deg); }
+        }
+
+        @keyframes sphere-bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        @keyframes prism-rotate {
+            from { transform: rotateY(0); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .prism {
+            width: 100px;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: prism-rotate 8s infinite linear;
+        }
+
+        .prism-face {
+            position: absolute;
+            border: 2px solid var(--color-text);
+            background: linear-gradient(45deg, var(--color-neutral), var(--color-primary));
+        }
+
+        .prism-front { transform: translateZ(40px); width: 100px; height: 80px; top: 20px; }
+        .prism-back { transform: translateZ(-40px) rotateY(180deg); width: 100px; height: 80px; top: 20px; }
+        .prism-right { transform: rotateY(90deg) translateZ(40px); width: 80px; height: 80px; top: 20px; left: 10px; }
+        .prism-left { transform: rotateY(-90deg) translateZ(40px); width: 80px; height: 80px; top: 20px; left: 10px; }
+        .prism-top { transform: rotateX(90deg) translateZ(40px); width: 100px; height: 80px; }
+        .prism-bottom { transform: rotateX(-90deg) translateZ(40px); width: 100px; height: 80px; top: 80px; }
+
+        .shape-3d-card:hover .cube,
+        .shape-3d-card:hover .pyramid,
+        .shape-3d-card:hover .cylinder,
+        .shape-3d-card:hover .prism {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shapes.html">Shapes</a></li>
+            <li><a href="polygons.html">Polygons</a></li>
+            <li><a href="transform.html">Transformations</a></li>
+            <li><a href="symmetry.html">Symmetry</a></li>
+            <li><a href="angles.html">Angles</a></li>
+            <li><a href="area.html">Area & Perimeter</a></li>
+            <li><a href="coordinates.html">Coordinates</a></li>
+            <li><a href="3dshapes.html">3D Shapes</a></li>
+            <li><a href="motion.html">Motion & Patterns</a></li>
+            <li><a href="challenges.html">Challenges</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>3D Shapes</h1>
+        <p>Explore shapes that have depth! Hover to pause the animation.</p>
+
+        <div class="shape-3d-grid">
+            <div class="shape-3d-card">
+                <div class="shape-3d-display">
+                    <div class="cube">
+                        <div class="cube-face front"></div>
+                        <div class="cube-face back"></div>
+                        <div class="cube-face right"></div>
+                        <div class="cube-face left"></div>
+                        <div class="cube-face top"></div>
+                        <div class="cube-face bottom"></div>
+                    </div>
+                </div>
+                <h3>Cube</h3>
+                <p>6 square faces, all equal. Like a dice!</p>
+                <small>Edges: 12, Vertices: 8</small>
+            </div>
+
+            <div class="shape-3d-card">
+                <div class="shape-3d-display">
+                    <div class="pyramid">
+                        <div class="pyramid-face front"></div>
+                        <div class="pyramid-face back"></div>
+                        <div class="pyramid-face right"></div>
+                        <div class="pyramid-face left"></div>
+                        <div class="pyramid-base"></div>
+                    </div>
+                </div>
+                <h3>Pyramid</h3>
+                <p>4 triangular faces meeting at a point, with a square base.</p>
+                <small>Faces: 5, Edges: 8, Vertices: 5</small>
+            </div>
+
+            <div class="shape-3d-card">
+                <div class="shape-3d-display">
+                    <div class="sphere"></div>
+                </div>
+                <h3>Sphere</h3>
+                <p>Perfectly round in 3D. Like a ball!</p>
+                <small>No edges or vertices</small>
+            </div>
+
+            <div class="shape-3d-card">
+                <div class="shape-3d-display">
+                    <div class="cylinder"></div>
+                </div>
+                <h3>Cylinder</h3>
+                <p>Two circular faces connected by a curved surface.</p>
+                <small>Faces: 3, Edges: 2, Vertices: 0</small>
+            </div>
+
+            <div class="shape-3d-card">
+                <div class="shape-3d-display">
+                    <div class="prism">
+                        <div class="prism-face prism-front"></div>
+                        <div class="prism-face prism-back"></div>
+                        <div class="prism-face prism-right"></div>
+                        <div class="prism-face prism-left"></div>
+                        <div class="prism-face prism-top"></div>
+                        <div class="prism-face prism-bottom"></div>
+                    </div>
+                </div>
+                <h3>Rectangular Prism</h3>
+                <p>Three pairs of rectangular faces. Like a box!</p>
+                <small>Faces: 6, Edges: 12, Vertices: 8</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
